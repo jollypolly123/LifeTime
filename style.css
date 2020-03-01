@@ -1,8 +1,13 @@
 body {
-    background-color: #ffcbcb;
+    background-color: #EEA9A9;
 }
 
 h1 {
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -17,7 +22,7 @@ title {
 }
 
 button {
-  background-color: #FFA4A4; /* Green */
+  background-color: #E07979;
   border: none;
   color: white;
   padding: 15px 32px;
