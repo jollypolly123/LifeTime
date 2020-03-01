@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Calendar API Quickstart</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Google Calendar Extracted Events</h1>
+    <!-- <iframe src="https://calendar.google.com/calendar/embed?src=rachelle.hu123%40gmail.com&ctz=America%2FNew_York" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe> -->
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <button id="authorize_button">Authorize</button>
+    <button id="create_event">Create Event</button>
+    <br/>
+    <button id="adjust_preferences">Adjust Preferences</button>
+    <br/>
+    <br/>
+    <button id="signout_button">Sign Out</button>
+    <ul id="content"></ul>
+    <p id="demo">lol</p>
+    <script src="cal.js"></script>
+
+
+
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+    </script>
+  </body>
+</html>

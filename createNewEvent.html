@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Calendar API Quickstart</title>
+    <link type="text/css" rel="stylesheet" href="style.css">
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Google Calendar Extracted Events</h1>
+    <!--Add buttons to initiate auth sequence and sign out-->
+    <div>
+    <form id="event" method = GET>
+    <!-- <form id="event" method = "POST" action = "https://formspree.io/mzbgavkn"> -->
+      <b>Title: </b><input type="text" placeholder="Enter title" name="title" required><br> <br>
+      <b>Start Date: </b><input type="date" name="startdate" value="Enter Start Date" min="2020-01-01" max="2020-12-31" required><br>
+      <b>Start Time: </b><input type="time" name="stime" list="timeslist" step="1" required><br>
+      <br>
+      <b>End Date: </b><input type="date" name="enddate" value="Enter End Date" min="2020-01-01" max="2020-12-31" required><br>
+      <b>End Time: </b><input type="time" name="etime" list="timeslist" step="1" required>
+      <br>
+      <br>
+      <b>Category: </b><input type="text" placeholder="Enter Category (separate with commas)" name="categories" required>
+      <br>
+      <br>
+      <datalist id="timeslist">
+        <option value="00:00"><option value="00:30"><option value="01:00"><option value="01:30"><option value="02:00"><option value="02:30"><option value="03:00"><option value="04:30"><option value="05:30"><option value="06:00"><option value="06:30">
+        <option value="07:00"><option value="07:30"><option value="08:00"><option value="08:30"><option value="09:00"><option value="09:30"><option value="10:30"><option value="10:00"><option value="11:30"><option value="11:00"><option value="12:30">
+        <option value="12:00"><option value="13:30"><option value="13:00"><option value="14:30"><option value="14:30"><option value="15:00"><option value="15:30"><option value="16:00"><option value="16:30"><option value="17:00"><option value="17:30">
+        <option value="18:00"><option value="18:30"><option value="19:00"><option value="19:30"><option value="20:00"><option value="20:30"><option value="21:00"><option value="21:30"><option value="22:00"><option value="22:30"><option value="23:00">
+        <option value="23:30">
+      </<datalist>
+    </form>
+  </div>
+    <div>
+    <button class="createEvent" onclick="getValue()">Create Event</button>
+  </div>
+    <button class="lol" onclick="handleCreateClick()">Random Event</button>
+    <button class="home" onclick="goHome()">Go Home</button>
+
+    <p id="demo"></p>
+
+    <script src="cal.js"></script>
+  </<body>
+</html>
