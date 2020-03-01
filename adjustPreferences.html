@@ -1,12 +1,32 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-  <head>
-    <title>Google Calendar API Quickstart</title>
-    <link type="text/css" rel="stylesheet" href="style.css">
-    <meta charset="utf-8" />
-  </head>
-  <body>
+<head>
+<script>
+  window.onload = function() {
+    var category = JSON.parse(window.localStorage.getItem("cart"));
+    var chart = new CanvasJS.Chart("chartContainer", {
+    	animationEnabled: true,
+    	title: {
+    		text: "Time in Each Activity Next Week"
+    	},
+    	data: [{
+    		type: "pie",
+    		startAngle: 270,
+    		yValueFormatString: "##0.00\"%\"",
+    		indexLabel: "{label} {y}",
+    		dataPoints: category
+    	}]
+    });
+  chart.render();
+  }
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script src="cal.js"></script>
 
-<script src="table.js"></script>
+<button class="home" onclick="goHome()">Go Home</button>
+<script src="cal.js"></script>
 </body>
 </html>
