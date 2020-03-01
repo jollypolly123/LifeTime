@@ -1,13 +1,28 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+<link type="text/css" rel="stylesheet" href="style.css">
 <script>
   window.onload = function() {
     var category = JSON.parse(window.sessionStorage.getItem("category"));
+      CanvasJS.addColorSet("redShades",
+            [
+              "#ff9090",
+              "#ff7070",
+              "#ff4d4d",
+              "#ff1a1a",
+            ]);
     var chart = new CanvasJS.Chart("chartContainer", {
-    	animationEnabled: true,
+      colorSet: "redShades",
+      backgroundColor: "#EEA9A9",
+      animationEnabled: true,
     	title: {
-    		text: "Time in Each Activity Next Week"
+        fontSize: 60,
+        fontFamily: "Verdana",
+        fontWeight: "normal",
+        margin: 40,
+        padding: 30,
+    		text: "Weekly Report of Activities"
     	},
     	data: [{
     		type: "pie",
@@ -22,7 +37,19 @@
 </script>
 </head>
 <body>
-<div id="chartContainer" style="height: 420px; width: 100%;"></div>
+<div id="chartContainer" style="height: 560px; width: 100%;"></div>
+<script>
+var category = JSON.parse(window.sessionStorage.getItem("category"));
+for (item in category) {
+  if (category[item]['y']>45 && category[item]['label']=="Work")
+    alert("Take a break every once in a while!");
+  if (category[item]['y']>45 && category[item]['label']=="Fun")
+    alert("Don't forget to work hard to play hard.");
+  if (category[item]['y']<20 && category[item]['label']=="Family")
+    alert("Make some family time this week!");
+}
+</script>
+
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 <script src="cal.js"></script>
 
