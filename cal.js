@@ -108,7 +108,6 @@ function listUpcomingEvents() {
     'orderBy': 'startTime',
   }).then(function(response) {
     var events = response.result.items;
-    appendPre('Your events this week:', false);
     if (events.length > 0) {
       for (i = 0; i < events.length; i++) {
         var event = events[i];
@@ -143,7 +142,7 @@ function listUpcomingEvents() {
       var myString = {"y" : value, "label": key};
       category.push(myString);
     }
-    window.localStorage.setItem("category", JSON.stringify(category));
+    window.sessionStorage.setItem("category", JSON.stringify(category));
   });
   return category;
 }
@@ -195,5 +194,5 @@ request.execute(function(event) {
 }
 
 function goHome() {
-    location.replace('quickstart.html');
+    location.replace('index.html');
 }
