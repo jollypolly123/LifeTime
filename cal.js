@@ -48,11 +48,13 @@ function updateSigninStatus(isSignedIn) {
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
     createEventButton.style.display = 'block';
+    adjustPreferencesButton.style.display = 'block';
     listUpcomingEvents();
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
     createEventButton.style.display = 'none';
+    adjustPreferencesButton.style.display = 'none';
   }
 }
 function handleAuthClick(event) {
@@ -70,7 +72,7 @@ function handlePreferences(event) {
 }
 
 var dict = new Object();
-
+var category = [];
 /**
  * Append a pre element to the body containing the given message
  * as its text node. Used to display the results of the API call.
@@ -116,7 +118,6 @@ function listUpcomingEvents() {
           when = event.start.date;
         }
         appendPre(event.summary + ' (' + when + ')', true);
-        console.log(duration);
         if (event.description) {
           var ed = event.description;
           if (ed in dict) {
@@ -129,10 +130,22 @@ function listUpcomingEvents() {
     } else {
       appendPre('No upcoming events found. Maybe plan out your week?', false);
     }
-    console.log(dict);
+    var total = 0;
+    for (activity in dict) {
+      total += dict[activity];
+    }
+    for (ed in dict) {
+      dict[ed] = dict[ed]/total*100;
+    }
+    // var myString = "";
+    for (key in dict) {
+      var value = dict[key];
+      var myString = {"y" : value, "label": key};
+      category.push(myString);
+    }
+    window.localStorage.setItem("category", JSON.stringify(category));
   });
-
-  return true;
+  return category;
 }
 
 function getValue() {
@@ -156,22 +169,6 @@ function handleCreateClick() {
 }
 
 function insertEvent() {
-//   var event = {
-//   "summary": "Appointment",
-//   "start": {
-//     "dateTime": "2020-02-16T10:00:00.000-07:00"
-//   },
-//   "end": {
-//     "dateTime": "2020-02-16T10:25:00.000-07:00"
-//   }
-// };
-// var request = gapi.client.calendar.events.insert({
-//   'calendarId': 'primary',
-//   'resource': event
-// });
-// request.execute(function(event) {
-//   appendPre('Event created: ' + event.data.htmlLink);
-// });
 var event = {
   'summary': 'Google I/O 2015',
   'location': '800 Howard St., San Francisco, CA 94103',
@@ -194,47 +191,9 @@ request.execute(function(event) {
   alert('event added');
 });
 
-  // var x = document.getElementById("event");
-  // var title = x.elements[0].value;
-  // var startDate = x.elements[1].value;
-  // var startTime = x.elements[2].value;
-  // var endDate = x.elements[3].value;
-  // var endTime = x.elements[4].value;
-  // var categories = x.elements[5].value.split(",");
-  // var txt = "";
-  // for (i = 0; i < x.length; i++) {
-  //   txt = txt + x.elements[i].value + "\n";
-  // }
   document.getElementById("demo").innerHTML = "done";
 }
 
 function goHome() {
     location.replace('quickstart.html');
 }
-
-//
-// function todo() {
-//   let categories = [];
-//
-//   function addCat(text) {
-//     const cat = {
-//       text,
-//       id: text
-//     };
-//     categories.push(cat)
-//     document.getElementById("demo").innerHTML = categories;
-//   }
-//
-//   const form = document.querySelector('.js-form');
-//   form.addEventListener('submit', event => {
-//     event.preventDefault();
-//     const input = document.querySelector('.js-todo-input');
-//
-//     const text = input.value.trim();
-//     if (text !== '') {
-//       addCat(text);
-//       input.value = '';
-//       input.focus();
-//     }
-//   });
-// }
