@@ -10,6 +10,8 @@ var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
 var createEventButton = document.getElementById('create_event');
 var adjustPreferencesButton = document.getElementById('adjust_preferences');
+var embeddedCalendar = document.getElementById('embedded_cal');
+var header = document.getElementById('your_events');
 /** *  On load, called to load the auth2 library and API client library. */
 function handleClientLoad() {
   gapi.load('client:auth2', initClient);
@@ -32,9 +34,9 @@ function initClient() {
     updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
-    createEventButton.onclick = handleCreateClick;
+    // createEventButton.onclick = handleCreateClick;
     adjustPreferencesButton.onclick = handlePreferences;
-    // createEventButton.onclick = handleCreateEvent;
+    createEventButton.onclick = handleCreateEvent;
   }, function(error) {
     appendPre(JSON.stringify(error, null, 2));
   });
@@ -49,12 +51,18 @@ function updateSigninStatus(isSignedIn) {
     signoutButton.style.display = 'block';
     createEventButton.style.display = 'block';
     adjustPreferencesButton.style.display = 'block';
+    embeddedCalendar.style["width"] = "800px";
+    embeddedCalendar.style["height"] = "600px";
+    header.style["display"] = "flex";
     listUpcomingEvents();
   } else {
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
     createEventButton.style.display = 'none';
     adjustPreferencesButton.style.display = 'none';
+    embeddedCalendar.style["width"] = "0px";
+    embeddedCalendar.style["height"] = "0px";
+    header.style["display"] = 'none';
   }
 }
 function handleAuthClick(event) {
@@ -163,36 +171,46 @@ function getValue() {
   location.replace("formComplete.html");
 }
 
-function handleCreateClick() {
-  gapi.client.load('calendar', 'v3', insertEvent);
+function handleAddToForm() {
+  var x = document.getElementById("event");
+  var category = x.elements[0].value;
+  var percent = x.elements[1].value;
+  var aboveBelow = x.elements[2].value;
+  for (i = 0; i < x.length; i++) {
+    console.log(x.elements[i].value);
+  }
 }
 
-function insertEvent() {
-var event = {
-  'summary': 'Google I/O 2015',
-  'location': '800 Howard St., San Francisco, CA 94103',
-  'description': 'A chance to hear more about Google\'s developer products.',
-  'start': {
-    'dateTime': '2020-05-28T09:00:00-07:00',
-    'timeZone': 'America/New_York'
-  },
-  'end': {
-    'dateTime': '2020-05-28T17:00:00-07:00',
-    'timeZone': 'America/New_York'
-  },
-};
-var request = gapi.client.calendar.events.insert({
-  'calendarId': 'primary',
-  'resource': event
-});
-request.execute(function(event) {
-  appendPre('Event created: ' + event.htmlLink);
-  alert('event added');
-});
-
-  document.getElementById("demo").innerHTML = "done";
-}
-
-function goHome() {
-    location.replace('index.html');
-}
+// function handleCreateClick() {
+//   gapi.client.load('calendar', 'v3', insertEvent);
+// }
+//
+// function insertEvent() {
+// var event = {
+//   'summary': 'Google I/O 2015',
+//   'location': '800 Howard St., San Francisco, CA 94103',
+//   'description': 'A chance to hear more about Google\'s developer products.',
+//   'start': {
+//     'dateTime': '2020-05-28T09:00:00-07:00',
+//     'timeZone': 'America/New_York'
+//   },
+//   'end': {
+//     'dateTime': '2020-05-28T17:00:00-07:00',
+//     'timeZone': 'America/New_York'
+//   },
+// };
+// var request = gapi.client.calendar.events.insert({
+//   'calendarId': 'primary',
+//   'resource': event
+// });
+// request.execute(function(event) {
+//   appendPre('Event created: ' + event.htmlLink);
+//   alert('event added');
+// });
+//
+//   document.getElementById("demo").innerHTML = "done";
+// }
+//
+// function goHome() {
+//     location.replace('index.html');
+// }
