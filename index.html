@@ -8,16 +8,18 @@
   <body>
     <h1>Google Calendar Events This Week</h1>
     <!--Add buttons to initiate auth sequence and sign out-->
-    <button id="authorize_button">Authorize</button>
-    <button id="create_event">Create Event</button>
-    <br/>
-    <button id="adjust_preferences">Time Spent</button>
-    <br/>
-    <br/>
-    <button id="signout_button">Sign Out</button>
-    <br/>
-    <br/>
-    <h2>Your events this week:</h2>
+    <ul class = "mainMenu">
+      <li><button id="create_event">Change Goals</button></li>
+      <li><button id="adjust_preferences">Weekly Report</button></li>
+      <li><button id="signout_button">Sign Out</button></li>
+    </ul>
+
+    <div id="buttonA"><button id="authorize_button">Authorize</button></div>
+
+    <br/><br/>
+    <h2 id="your_events">Your events this week:</h2>
+    <iframe id="embedded_cal" src="https://calendar.google.com/calendar/b/1/embed?height=600&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FNew_York&amp;src=cmFjaGVsbGUuaHUxMjNAZ21haWwuY29t&amp;src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&amp;src=cmFjaGVsbGVAaGFja3RoZW5lLmNvbQ&amp;color=%23039BE5&amp;color=%2333B679&amp;color=%230B8043&amp;color=%23009688"
+    style="border:solid 1px #777" frameborder="0" scrolling="yes"></iframe>
     <ul id="content"></ul>
     <script src="cal.js"></script>
 
